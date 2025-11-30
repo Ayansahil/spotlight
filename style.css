@@ -32,7 +32,7 @@ body {
   z-index: 1;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.371);
+  background: rgba(0, 0, 0, 0.215);
 }
 
 .box {
@@ -45,7 +45,7 @@ body {
   pointer-events: none;
   background: radial-gradient(
     200px at var(--x) var(--y),
-    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0),
     rgba(0, 0, 0, 0.912)
   );
 }
