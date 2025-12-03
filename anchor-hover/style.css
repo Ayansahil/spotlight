@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: system-ui;
 }
 html,
 body {
@@ -13,12 +14,46 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 30px;
   anchor-name: --some-anchor;
 }
+
+/* BOXES */
 .box {
   height: 200px;
   width: 200px;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Video background layer */
+.box video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 10px;
+}
+/* Text on top */
+.box span {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
 }
 .box:hover {
   anchor-name: --some-anchor;
@@ -37,8 +72,7 @@ body {
 .anchor {
   background-color: #eaeaea;
   border-radius: 10px;
-  /* height: 50px;
-  width: 60px; */
+
   position: absolute;
   top: anchor(top);
   bottom: anchor(bottom);
@@ -48,4 +82,58 @@ body {
   transition: all 0.3s linear;
   mix-blend-mode: difference;
   pointer-events: none;
+}
+/* Tooltip Text */
+.anchor::before {
+  content: "";
+  position: relative;
+}
+
+/* Tooltip arrow */
+.anchor::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: inherit;
+  border-radius: 2px;
+}
+
+/* Tooltip visibility ONLY when box hover */
+.box:hover ~ .anchor {
+  opacity: 1;
+  transform: translate(-50%, -130%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+/* DIFFERENT TEXT / COLOURS ON HOVER */
+.red:hover ~ .anchor {
+  background: #d29090;
+  color: #a83535;
+}
+.blue:hover ~ .anchor {
+  background: #6377ab;
+  color: #001654;
+}
+.green:hover ~ .anchor {
+  background: #b0d5b0;
+  color: #003f00;
+}
+
+/* Different tooltip content */
+.red:hover ~ .anchor::before {
+  content: "This is Red ❤️✨ ";
+}
+.blue:hover ~ .anchor::before {
+  content: "This is Blue 💙✨";
+}
+.green:hover ~ .anchor::before {
+  content: "This is Green 💚✨ ";
 }

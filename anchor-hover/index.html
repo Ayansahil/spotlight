@@ -7,10 +7,37 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="red box"></div>
-    <div class="blue box"></div>
-    <div class="green box"></div>
+    <div class="red box">
+      <video src="./t1.mp4" autoplay loop muted></video>
+      <span>Box1</span>
+    </div>
+
+    <div class="blue box">
+      <video src="./t2.mp4" autoplay loop muted></video>
+      <span>Box2</span>
+    </div>
+
+    <div class="green box" id="playAudioBox">
+      <video id="video3" src="./t3.mp4" autoplay loop muted></video>
+      <span>Box3</span>
+    </div>
 
     <div class="anchor"></div>
+
+    <script>
+      const video3 = document.getElementById("video3");
+      const audioBox = document.getElementById("playAudioBox");
+
+      audioBox.addEventListener("click", () => {
+        if (video3.muted === true) {
+          // Audio ON
+          video3.muted = false;
+          video3.play();
+        } else {
+          // Audio OFF
+          video3.muted = true;
+        }
+      });
+    </script>
   </body>
 </html>
